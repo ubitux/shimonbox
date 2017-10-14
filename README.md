@@ -13,6 +13,7 @@ Supported boards
 | Board name                                   | Preview                                          |
 | -------------------------------------------- | ------------------------------------------------ |
 | [BeagleBone Black](boards/bbb.scad)          | ![BeagleBone Black](boards/gif/bbb.gif)          |
+| [Cubieboard](boards/cubieboard.scad)         | ![Cubieboard](boards/gif/cubieboard.gif)         |
 
 
 Corresponding cases

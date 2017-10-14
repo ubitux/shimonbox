@@ -17,20 +17,24 @@ include <globals.scad>
 use <utils.scad>
 
 use <boards/bbb.scad>
+use <boards/cubieboard.scad>
 
 boards = [
     ["bbb",             beaglebone_black_info()],
+    ["cubieboard",      cubieboard_info()],
 ];
 
 module boards_get_plate_2d(id) {
     filter(id) {
         beaglebone_black_plate_2d();
+        cubieboard_plate_2d();
     }
 }
 
 module boards_get_board(id) {
     filter(id) {
         beaglebone_black();
+        cubieboard();
     }
 }
 
