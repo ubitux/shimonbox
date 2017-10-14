@@ -15,6 +15,14 @@ Supported boards
 | [BeagleBone Black](boards/bbb.scad)          | ![BeagleBone Black](boards/gif/bbb.gif)          |
 
 
+Corresponding cases
+-------------------
+
+| Board name                                   | Preview                                          | Status   |
+| -------------------------------------------- | ------------------------------------------------ | -------- |
+| [BeagleBone Black](cases/bbb.scad)           | ![BeagleBone Black](cases/gif/bbb.gif)           | UNTESTED |
+
+
 Usage
 -----
 
