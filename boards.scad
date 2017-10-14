@@ -19,11 +19,13 @@ use <utils.scad>
 use <boards/bbb.scad>
 use <boards/cubieboard.scad>
 use <boards/hikey.scad>
+use <boards/nanopi_neo2.scad>
 
 boards = [
     ["bbb",             beaglebone_black_info()],
     ["cubieboard",      cubieboard_info()],
     ["hikey",           hikey_info()],
+    ["nanopi_neo2",     nanopi_neo2_info()],
 ];
 
 module boards_get_plate_2d(id) {
@@ -31,6 +33,7 @@ module boards_get_plate_2d(id) {
         beaglebone_black_plate_2d();
         cubieboard_plate_2d();
         hikey_plate_2d();
+        nanopi_neo2_plate_2d();
     }
 }
 
@@ -39,6 +42,7 @@ module boards_get_board(id) {
         beaglebone_black();
         cubieboard();
         hikey();
+        nanopi_neo2();
     }
 }
 
