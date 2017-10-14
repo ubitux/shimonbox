@@ -1,0 +1,18 @@
+- case.scad: add the possibility to use custom pattern as vents
+- cases: make bounding boxes of some components optional holes (typically: GPIO)
+- cases: test them and update reports
+- doc: document how to write board + case + component
+- electronics: be more respectful of the standards for the shape dimensions inside the bounding box
+- electronics: natively center them instead of using a translate
+
+
+boards to add:
+
+- raspberry pi 1
+- raspberry pi 2
+- odroid c2
+
+
+ideas:
+
+- integrate hexago as a way to stack them, or simply sliding slices
