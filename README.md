@@ -22,6 +22,7 @@ Corresponding cases
 | Board name                                   | Preview                                          | Status   |
 | -------------------------------------------- | ------------------------------------------------ | -------- |
 | [BeagleBone Black](cases/bbb.scad)           | ![BeagleBone Black](cases/gif/bbb.gif)           | UNTESTED |
+| [Cubieboard](cases/cubieboard.scad)          | ![Cubieboard](cases/gif/cubieboard.gif)          | UNTESTED |
 
 
 Usage
