@@ -7,6 +7,14 @@ semi-automatically generated 3D printable cases for development boards.
 [openscad]: http://www.openscad.org
 
 
+Supported boards
+----------------
+
+| Board name                                   | Preview                                          |
+| -------------------------------------------- | ------------------------------------------------ |
+| [BeagleBone Black](boards/bbb.scad)          | ![BeagleBone Black](boards/gif/bbb.gif)          |
+
+
 Usage
 -----
 
