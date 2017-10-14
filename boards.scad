@@ -18,16 +18,19 @@ use <utils.scad>
 
 use <boards/bbb.scad>
 use <boards/cubieboard.scad>
+use <boards/hikey.scad>
 
 boards = [
     ["bbb",             beaglebone_black_info()],
     ["cubieboard",      cubieboard_info()],
+    ["hikey",           hikey_info()],
 ];
 
 module boards_get_plate_2d(id) {
     filter(id) {
         beaglebone_black_plate_2d();
         cubieboard_plate_2d();
+        hikey_plate_2d();
     }
 }
 
@@ -35,6 +38,7 @@ module boards_get_board(id) {
     filter(id) {
         beaglebone_black();
         cubieboard();
+        hikey();
     }
 }
 

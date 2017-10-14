@@ -14,6 +14,7 @@ Supported boards
 | -------------------------------------------- | ------------------------------------------------ |
 | [BeagleBone Black](boards/bbb.scad)          | ![BeagleBone Black](boards/gif/bbb.gif)          |
 | [Cubieboard](boards/cubieboard.scad)         | ![Cubieboard](boards/gif/cubieboard.gif)         |
+| [Hikey (LeMaker)](boards/hikey.scad)         | ![Hikey](boards/gif/hikey.gif)                   |
 
 
 Corresponding cases
