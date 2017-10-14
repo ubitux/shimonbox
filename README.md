@@ -16,6 +16,7 @@ Supported boards
 | [Cubieboard](boards/cubieboard.scad)         | ![Cubieboard](boards/gif/cubieboard.gif)         |
 | [Hikey (LeMaker)](boards/hikey.scad)         | ![Hikey](boards/gif/hikey.gif)                   |
 | [NanoPi Neo 2](boards/nanopi_neo2.scad)      | ![NanoPi Neo 2](boards/gif/nanopi_neo2.gif)      |
+| [Orange Pi Zero](boards/orangepi_zero.scad)  | ![Orange Pi Zero](boards/gif/orangepi_zero.gif)  |
 
 
 Corresponding cases
