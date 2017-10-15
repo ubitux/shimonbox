@@ -232,11 +232,6 @@ module case(name, cfg, mode="demo") {
 
     buttons_pos_dim = _get_buttons_pushers_pos_dim(board_dim, cfg, info);
 
-    *!union() {
-        boards_get_board(case_id);
-        _button_pushers(board_dim, cfg, info, buttons_pos_dim);
-    }
-
     if (mode == "bottom") {
         _case_bottom(case_id, cfg, info, z_offset_bottom, bottom_border_h);
     } else if (mode == "top") {
