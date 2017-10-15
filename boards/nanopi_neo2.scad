@@ -43,7 +43,7 @@ microusb_dim    = [   6,    8,    3];
 serial_dim      = [10.5,  2.5,  8.5];
 usb_dim         = [  14,   14,    6];
 
-ethusb_dim      = [  14, 8.75,    3];
+ethusb_dim      = [  14, 8.75,    3]; // cleanup box
 
 
 module nanopi_neo2_plate_2d(cut=false) {
