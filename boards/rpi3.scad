@@ -47,6 +47,9 @@ microusb_dim    = [    6,  8,    3];
 serialcon_dim   = [  2.5, 22,  5.5];
 usbx2_dim       = [17.25, 15, 16.5];
 
+ethusb_dim      = [17.25, 3.25, 13.5]; // cleanup box
+usbusb_dim      = [17.25,    3, 16.5]; // cleanup box
+
 
 module raspberry_pi_3_plate_2d() {
     plate_2d(board_dim[0], board_dim[1], 3);
@@ -65,6 +68,9 @@ comp_info = [
     [serialcon_rpi_info(),  serialcon_dim,   [ 1, 0,-1], [0,0,2], [-1,-1, 1], [    3,  28,0]], // display
     [usbx2_info(),          usbx2_dim,       [ 1, 0,-1], [0,0,0], [ 1,-1, 1], [    2,  29,0]],
     [usbx2_info(),          usbx2_dim,       [ 1, 0,-1], [0,0,0], [ 1,-1, 1], [    2,  47,0]],
+
+    [unknown_info(),        ethusb_dim,      [ 1, 0,-1], [0,0,0], [ 1,-1, 1], [    2,19.875,0]],
+    [unknown_info(),        usbusb_dim,      [ 1, 0,-1], [0,0,0], [ 1,-1, 1], [    2,    38,0]],
 ];
 
 module raspberry_pi_3() {
@@ -83,6 +89,9 @@ module raspberry_pi_3() {
         serialcon_rpi(dim=serialcon_dim);
         usbx2(dim=usbx2_dim);
         usbx2(dim=usbx2_dim);
+
+        %cube(ethusb_dim, center=true);
+        %cube(usbusb_dim, center=true);
     }
 }
 
