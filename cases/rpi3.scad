@@ -21,7 +21,12 @@ board_dim = map_get(raspberry_pi_3_info(), "board_dim");
 vents = [
     [
         "bottom", default_bottom_vents(board_dim),
-    ],
+    ],[
+        "top", [
+            ["dim", [board_dim[0] * .3, board_dim[1] * .7]],
+            ["pos", [-18, -4.5]],
+        ]
+    ]
 ];
 
 cfg = [
