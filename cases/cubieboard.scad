@@ -21,7 +21,12 @@ board_dim = map_get(cubieboard_info(), "board_dim");
 vents = [
     [
         "bottom", default_bottom_vents(board_dim, s=.5),
-    ],
+    ],[
+        "top", [
+            ["dim", [board_dim[0] * .6, board_dim[1] * .35]],
+            ["pos", [15, 10]],
+        ]
+    ]
 ];
 
 cfg = [
