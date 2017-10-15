@@ -28,8 +28,8 @@ board_dim = [40, 40, 1.25];
 /* Plate holes */
 hole_d = 3;
 hole_orig = [board_dim[0], board_dim[1]] * -.5;
-ring_off = 2;
-hole_pad = 2.5;
+ring_off = 1.6;
+hole_pad = 2.3;
 hole_pad_t = [1,-1]*hole_pad;
 holes_pos = [for (y=hole_pad_t+[0, board_dim[1]],
                   x=hole_pad_t+[0, board_dim[0]]) hole_orig + [x, y]];
