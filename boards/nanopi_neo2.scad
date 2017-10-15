@@ -63,7 +63,7 @@ module nanopi_neo2_plate_2d(cut=false) {
 comp_info = [
     /* info function        box dimensions   comp-corner rotate  board-corner    position  */
     [ethernet_info(),       ethernet_dim,    [ 1,-1, 1], [2,0,0], [ 1, 1,-1], [  4,  -7,-1.5]],
-    [microsdcard_info(),    microsdcard_dim, [ 1, 1,-1], [0,0,2], [-1,-1, 1], [ -2,   7,   0]],
+    [microsdcard_info(),    microsdcard_dim, [ 1, 1,-1], [0,0,2], [-1,-1, 1], [ -2,   7,0.25]],
     [microsdslot_info(),    microsdslot_dim, [ 1, 1,-1], [0,0,2], [-1,-1, 1], [  2,6.50,   0]],
     [microusb_info(),       microusb_dim,    [ 1,-1,-1], [0,0,2], [-1, 1, 1], [-.5,  -6,   0]],
     [pin_header_info(),     serial_dim,      [ 1,-1,-1], [0,0,0], [ 1,-1, 1], [ -5,2.25,   0]],
