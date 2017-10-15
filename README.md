@@ -28,7 +28,7 @@ Corresponding cases
 
 | Board name                                   | Preview                                          | Status                                                                                   |
 | -------------------------------------------- | ------------------------------------------------ | ---------------------------------------------------------------------------------------- |
-| [BeagleBone Black](cases/bbb.scad)           | ![BeagleBone Black](cases/gif/bbb.gif)           | UNTESTED                                                                                 |
+| [BeagleBone Black](cases/bbb.scad)           | ![BeagleBone Black](cases/gif/bbb.gif)           | [VERIFIED](pics/bbb.jpg):<br />![BeagleBone Black](pics/small/bbb.jpg)                   |
 | [Cubieboard](cases/cubieboard.scad)          | ![Cubieboard](cases/gif/cubieboard.gif)          | UNTESTED                                                                                 |
 | [Hikey (LeMaker)](cases/hikey.scad)          | ![Hikey](cases/gif/hikey.gif)                    | [VERIFIED](pics/hikey.jpg):<br />![Hikey](pics/small/hikey.jpg)                          |
 | [NanoPi Neo 2](cases/nanopi_neo2.scad)       | ![NanoPi Neo 2](cases/gif/nanopi_neo2.gif)       | UNTESTED                                                                                 |
