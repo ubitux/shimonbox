@@ -19,6 +19,11 @@ function unknown_info() = [
     ["watch", "nowhere"],
 ];
 
+function unknown_drill_info() = [
+    ["category", "unknown"],
+    ["watch", "horizon"],
+];
+
 function in2mm(v) = 2.54 * v / 100;
 
 function pmul(v,m) = [for (i=[0:len(v)-1]) v[i] * m[i]];

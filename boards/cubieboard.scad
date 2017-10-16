@@ -61,6 +61,7 @@ sata_data_dim   = [   17,  6.5,    9];
 serial_dim      = [10.25,  2.5,  8.5];
 usbx2_dim       = [ 17.5, 14.5,   16];
 
+pwrhdmi_dim     = [3.5, 2, 3.5]; // cleanup box
 
 module cubieboard_plate_2d() {
     plate_2d(board_dim[0], board_dim[1]);
@@ -87,6 +88,8 @@ comp_info = [
     [sata_5v_info(),        sata_5v_dim,     [-1,-1,-1], [0,0,0], [-1,-1, 1], [  18,  47,   0]],
     [sata_data_info(),      sata_data_dim,   [ 1,-1,-1], [0,0,2], [-1, 1, 1], [  27,   0,   0]],
     [usbx2_info(),          usbx2_dim,       [ 1,-1,-1], [0,0,3], [-1,-1, 1], [  29, -.5,   0]],
+
+    [unknown_drill_info(),  pwrhdmi_dim,     [ 1, 1,-1], [0,0,2], [-1,-1, 1], [ -.5,  35,   0]],
 ];
 
 module cubieboard() {
@@ -114,6 +117,8 @@ module cubieboard() {
         sata_5v(dim=sata_5v_dim);
         sata_data(dim=sata_data_dim);
         usbx2(dim=usbx2_dim);
+
+        %cube(pwrhdmi_dim, center=true);
     }
 }
 
