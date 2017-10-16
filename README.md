@@ -4,9 +4,6 @@ ShimonBox
 ShimonBox is an [OpenSCAD][openscad] project aiming at providing
 semi-automatically generated 3D printable cases for development boards.
 
-Note: the project is still experimental so the cases may not fit properly the
-boards yet. Refer to the "Status" column below.
-
 [openscad]: http://www.openscad.org
 
 
