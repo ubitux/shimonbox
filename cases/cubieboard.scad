@@ -31,7 +31,7 @@ vents = [
 
 cfg = [
     ["min_z", 7],
-    ["max_z", 7],
+    ["max_z", 7.5],
     ["vents", vents],
 ];
 
