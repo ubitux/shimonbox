@@ -25,22 +25,22 @@ function _get_buttons_pushers_pos_dim(board_dim, cfg, info) = [
     let(comp_info_list = map_get(info, "components"))
 
     for (comp_info = comp_info_list)
-        let(meta         = comp_info[0])
-        let(dim          = comp_info[1])
-        let(corner_comp  = comp_info[2])
-        let(rot          = comp_info[3])
-        let(corner_board = comp_info[4])
-        let(position     = comp_info[5])
-        let(category     = map_get(meta, "category"))
+        let(meta         = comp_info[0],
+            dim          = comp_info[1],
+            corner_comp  = comp_info[2],
+            rot          = comp_info[3],
+            corner_board = comp_info[4],
+            position     = comp_info[5],
+            category     = map_get(meta, "category"))
 
         if (category == "button" && [rot[0], rot[1]] == [0, 0])
-            let(rz             = comp_info[3][2] * 90)
-            let(rotm           = [[cos(rz),sin(rz),0], [-sin(rz),cos(rz),0], [0,0,1]])
-            let(corner_pos     = pmul(corner_comp, dim) * -.5)
-            let(postrotate_pos = corner_pos * rotm)
-            let(board_pos      = pmul(corner_board, board_dim) * .5)
-            let(centered_pos   = postrotate_pos + position + board_pos)
-            let(pos            = centered_pos + [0, 0, dim[2]/2])
+            let(rz             = comp_info[3][2] * 90,
+                rotm           = [[cos(rz),sin(rz),0], [-sin(rz),cos(rz),0], [0,0,1]],
+                corner_pos     = pmul(corner_comp, dim) * -.5,
+                postrotate_pos = corner_pos * rotm,
+                board_pos      = pmul(corner_board, board_dim) * .5,
+                centered_pos   = postrotate_pos + position + board_pos,
+                pos            = centered_pos + [0, 0, dim[2]/2])
 
             [pos, dim]
 ];
