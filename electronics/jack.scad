@@ -14,7 +14,9 @@
 
 include <_internal.scad>
 
-$vpd = 100;
+use <misc.scad>
+
+$vpd = 200;
 
 module jack(dim=[14.5, 7, 6]) {
     l = dim[0];
@@ -41,11 +43,24 @@ module jack(dim=[14.5, 7, 6]) {
     }
 }
 
+module jack_rpi1(dim=[15, 12, 10]) {
+    plug(dim, clr=c_blue,
+         cyl_d=6.5, cyl_l=3.5,
+         cyl_clr=c_blue,
+         top_pad=.1);
+}
+
 function jack_info() = [
+    ["category", "jack"],
+    ["watch", "horizon"],
+];
+
+function jack_rpi1_info() = [
     ["category", "jack"],
     ["watch", "horizon"],
 ];
 
 components_demo() {
     jack();
+    jack_rpi1();
 }
