@@ -133,12 +133,12 @@ module rt_bbb(dim=[3.5, 8, 10.5]) {
     }
 }
 
-module serialcon_rpi(dim=[2.5, 22, 5.5]) {
+module serialcon_rpi(dim=[2.5, 22, 5.5], clr1=[.9,.85,.75]) {
     l = dim[0];
     w = dim[1];
     h = dim[2];
     translate(dim * -.5) { // XXX
-        color([.9,.85,.75]) {
+        color(clr1) {
             translate([0, 1])
                 cube([.5+_delta, w-2, h-1.5]);
             translate([l-.5, 1])
