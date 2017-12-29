@@ -29,15 +29,15 @@ module antenna(dim=[5, 5, 60]) {
     }
 }
 
-module ethernet(dim=[21, 16, 13.5], swap_led=false) {
+module ethernet(dim=[21, 16, 13.5], has_led=true, swap_led=false) {
     l = dim[0];
     w = dim[1];
     h = dim[2];
 
     c_green  = [.3, .9, .3];
     c_yellow = [.9, .9, .3];
-    c1 = swap_led ? c_yellow : c_green;
-    c2 = swap_led ? c_green  : c_yellow;
+    c1 = has_led ? (swap_led ? c_yellow : c_green)  : c_metal;
+    c2 = has_led ? (swap_led ? c_green  : c_yellow) : c_metal;
 
     rotate([0, 0, 180]) translate(dim * -.5) { // XXX
         difference() {
