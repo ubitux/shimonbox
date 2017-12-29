@@ -34,6 +34,7 @@ Corresponding cases
 | [Hikey (LeMaker)](cases/hikey.scad)          | ![Hikey](cases/gif/hikey.gif)                    | [VERIFIED](pics/hikey.jpg):<br />![Hikey](pics/small/hikey.jpg)                          |
 | [NanoPi Neo 2](cases/nanopi_neo2.scad)       | ![NanoPi Neo 2](cases/gif/nanopi_neo2.gif)       | [VERIFIED](pics/nanopi_neo2.jpg):<br />![NanoPi Neo 2](pics/small/nanopi_neo2.jpg)       |
 | [Orange Pi Zero](cases/orangepi_zero.scad)   | ![Orange Pi Zero](cases/gif/orangepi_zero.gif)   | [VERIFIED](pics/orangepi_zero.jpg):<br />![Orange Pi Zero](pics/small/orangepi_zero.jpg) |
+| [Raspberry Pi 1](cases/rpi1.scad)            | ![Raspberry Pi 1](cases/gif/rpi1.gif)            |                                                                                          |
 | [Raspberry Pi 3](cases/rpi3.scad)            | ![Raspberry Pi 3](cases/gif/rpi3.gif)            | [VERIFIED](pics/rpi3.jpg):<br />![Raspberry Pi 3](pics/small/rpi3.jpg)                   |
 
 
