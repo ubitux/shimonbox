@@ -81,6 +81,32 @@ module ir(dim=[3.5, 5, 7]) {
     }
 }
 
+module plug(dim=[20, 10, 15], clr=c_black,
+            cyl_d=3, cyl_l=5, cyl_hole_d=2, cyl_clr=c_metal,
+            top_pad=0) {
+
+    l = dim[0];
+    w = dim[1];
+    h = dim[2];
+
+    cube_l = l - cyl_l;
+
+    color(clr)
+        translate([-cyl_l/2, 0, 0])
+            cube([cube_l, w, h], center=true);
+    color(cyl_clr) {
+        translate([(l-cyl_l)/2, 0, (h-cyl_d)/2 - top_pad]) {
+            rotate([0, 90, 0]) {
+                difference() {
+                    cylinder(d=cyl_d, h=cyl_l, center=true);
+                    translate([0, 0, _delta])
+                        cylinder(d=3.0, h=cyl_l, center=true);
+                }
+            }
+        }
+    }
+}
+
 module rt_bbb(dim=[3.5, 8, 10.5]) {
     rt1_l = dim[0];
     rt1_w = dim[1];
