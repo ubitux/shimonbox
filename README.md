@@ -20,6 +20,7 @@ Supported boards
 | [Hikey (LeMaker)](boards/hikey.scad)         | ![Hikey](boards/gif/hikey.gif)                   |
 | [NanoPi Neo 2](boards/nanopi_neo2.scad)      | ![NanoPi Neo 2](boards/gif/nanopi_neo2.gif)      |
 | [Orange Pi Zero](boards/orangepi_zero.scad)  | ![Orange Pi Zero](boards/gif/orangepi_zero.gif)  |
+| [Raspberry Pi 1](boards/rpi1.scad)           | ![Raspberry Pi 1](boards/gif/rpi1.gif)           |
 | [Raspberry Pi 3](boards/rpi3.scad)           | ![Raspberry Pi 3](boards/gif/rpi3.gif)           |
 
 
