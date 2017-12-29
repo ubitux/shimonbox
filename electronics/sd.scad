@@ -14,7 +14,7 @@
 
 include <_internal.scad>
 
-$vpd = 100;
+$vpd = 300;
 
 module microsdslot(dim=[13, 12, 1.25]) {
     t = .25;
@@ -44,6 +44,52 @@ module microsdcard(dim=[15, 11, 1]) {
     }
 }
 
+module sdslot(dim=[17, 28, 4]) {
+    l = dim[0];
+    w = dim[1];
+    h = dim[2];
+
+    pos = [
+        [0, 0],
+        [0, w],
+        [l, w],
+        [l, w-2.9],
+        [l-11.5, w-2.9],
+        [3, w-5.3],
+        [3, 4.3],
+        [l, 4.3],
+        [l, 0],
+    ];
+
+    color(c_black)
+        translate(dim * -.5)
+            linear_extrude(height=dim[2])
+                polygon(pos);
+}
+
+module sdcard(dim=[32, 24, 2]) {
+    pos = [
+        [0,          0],
+        [0,          24-4],
+        [4,          24],
+        [4+6.25,     24],
+        [4+6.25,     24-0.8],
+        [4+6.25-1.5, 24-0.8],
+        [4+6.25-1.5, 24],
+        [32,         24],
+        [32,         0],
+        [7.8+6.7,    0],
+        [7.8+6.7,    0.8],
+        [7.8,        0.8],
+        [7.8,        0],
+    ];
+
+    color(c_darkblue)
+        translate(dim * -.5)
+            linear_extrude(height=dim[2])
+                polygon(pos);
+}
+
 function microsdslot_info() = [
     ["category", "sd"],
     ["watch", "nowhere"],
@@ -53,7 +99,18 @@ function microsdcard_info() = [
     ["watch", "horizon"],
 ];
 
-components_demo() {
+function sdslot_info() = [
+    ["category", "sd"],
+    ["watch", "nowhere"],
+];
+function sdcard_info() = [
+    ["category", "sd"],
+    ["watch", "horizon"],
+];
+
+components_demo(pad=50) {
     microsdslot();
     microsdcard();
+    sdslot();
+    sdcard();
 }
