@@ -14,7 +14,7 @@
 
 include <_internal.scad>
 
-$vpd = 200;
+$vpd = 350;
 
 module capacitor(dim=[6, 6, 5]) {
     l = dim[0];
@@ -107,6 +107,11 @@ module plug(dim=[20, 10, 15], clr=c_black,
     }
 }
 
+module rca(dim=[19.5, 10, 13]) {
+    plug(dim, clr=c_yellow,
+         cyl_d=8.3, cyl_l=9.5, cyl_hole_d=3.0, cyl_clr=c_metal, top_pad=0.85);
+}
+
 module rt_bbb(dim=[3.5, 8, 10.5]) {
     rt1_l = dim[0];
     rt1_w = dim[1];
@@ -176,6 +181,11 @@ function ir_info() = [
     ["watch", "nowhere"],
 ];
 
+function rca_info() = [
+    ["category", "misc"],
+    ["watch", "horizon"],
+];
+
 function rt_bbb_info() = [
     ["category", "misc"],
     ["watch", "nowhere"],
@@ -192,5 +202,6 @@ components_demo(pad=40) {
     extio_hikey();
     ir();
     serialcon_rpi();
+    rca();
     rt_bbb();
 }
