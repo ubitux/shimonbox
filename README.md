@@ -29,7 +29,7 @@ Corresponding cases
 | Board name                                   | Preview                                          | Status                                                                                   |
 | -------------------------------------------- | ------------------------------------------------ | ---------------------------------------------------------------------------------------- |
 | [BeagleBone Black](cases/bbb.scad)           | ![BeagleBone Black](cases/gif/bbb.gif)           | [VERIFIED](pics/bbb.jpg):<br />![BeagleBone Black](pics/small/bbb.jpg)                   |
-| [Cubieboard](cases/cubieboard.scad)          | ![Cubieboard](cases/gif/cubieboard.gif)          | [VERIFIED](pics/cubieboard.jpg):<br />![Cubieboard](pics/small/cubieboard.jpg)            |
+| [Cubieboard](cases/cubieboard.scad)          | ![Cubieboard](cases/gif/cubieboard.gif)          | [VERIFIED](pics/cubieboard.jpg):<br />![Cubieboard](pics/small/cubieboard.jpg)           |
 | [Hikey (LeMaker)](cases/hikey.scad)          | ![Hikey](cases/gif/hikey.gif)                    | [VERIFIED](pics/hikey.jpg):<br />![Hikey](pics/small/hikey.jpg)                          |
 | [NanoPi Neo 2](cases/nanopi_neo2.scad)       | ![NanoPi Neo 2](cases/gif/nanopi_neo2.gif)       | [VERIFIED](pics/nanopi_neo2.jpg):<br />![NanoPi Neo 2](pics/small/nanopi_neo2.jpg)       |
 | [Orange Pi Zero](cases/orangepi_zero.scad)   | ![Orange Pi Zero](cases/gif/orangepi_zero.gif)   | [VERIFIED](pics/orangepi_zero.jpg):<br />![Orange Pi Zero](pics/small/orangepi_zero.jpg) |
