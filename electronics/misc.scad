@@ -16,6 +16,11 @@ include <_internal.scad>
 
 $vpd = 200;
 
+module antenna(dim=[7.5, 16, 1]) { // TODO
+    color(c_black)
+        cube(dim, center=true);
+}
+
 module capacitor(dim=[6, 6, 5]) {
     l = dim[0];
     w = dim[1];
@@ -81,6 +86,11 @@ module ir(dim=[3.5, 5, 7]) {
     }
 }
 
+module led(dim=[2, 1, 0.5], clr=c_yellow) { // TODO
+    color(clr)
+        cube(dim, center=true);
+}
+
 module rt_bbb(dim=[3.5, 8, 10.5]) {
     rt1_l = dim[0];
     rt1_w = dim[1];
@@ -130,6 +140,11 @@ module serialcon_rpi(dim=[2.5, 22, 5.5]) {
     }
 }
 
+function antenna_info() = [
+    ["category", "misc"],
+    ["watch", "nowhere"],
+];
+
 function capacitor_info() = [
     ["category", "misc"],
     ["watch", "nowhere"],
@@ -150,6 +165,11 @@ function ir_info() = [
     ["watch", "nowhere"],
 ];
 
+function led_info() = [
+    ["category", "misc"],
+    ["watch", "sky"],
+];
+
 function rt_bbb_info() = [
     ["category", "misc"],
     ["watch", "nowhere"],
@@ -161,10 +181,12 @@ function serialcon_rpi_info() = [
 ];
 
 components_demo(pad=40) {
+    antenna();
     capacitor();
     chip();
     extio_hikey();
     ir();
+    led();
     serialcon_rpi();
     rt_bbb();
 }

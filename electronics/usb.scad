@@ -67,16 +67,19 @@ module usbx2(dim=[18, 14.5, 16], clr=c_black, has_folding=true) {
                 cube([l, w, 3.5]);
 }
 
-module microusb(dim=[6, 8, 3]) {
-    l = dim[0];
-    w = dim[1];
-    h = dim[2];
+module microusb(dim=[6, 10, 6]) {
+    jack_dim = [6, 8, 3];
+    l = jack_dim[0];
+    w = jack_dim[1];
+    h = jack_dim[2];
     microusb_polygon_pos = [[1, h], [w-1, h], [w, h-1],
                             [w-2, 0], [2, 0], [0, h-1]];
-    rotate([0, 0, 180]) translate(dim * -.5) { // XXX
+    p_w = dim[1];
+    p_h = dim[2];
+    rotate([0, 0, 180]) translate(jack_dim * -.5) { // XXX
         color(c_metal) {
-            translate([l-1, 0])
-                cube([1, w, h]);
+            translate([l-1, (w-p_w)/2, (h-p_h)/2])
+                cube([1, p_w, p_h]);
             rotate([90, 0, 90]) {
                 linear_extrude(height=l-1) {
                     difference() {

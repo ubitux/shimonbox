@@ -16,8 +16,8 @@ include <_internal.scad>
 
 $vpd = 180;
 
-module cpu(dim=[20, 20, 1.25]) {
-    color(c_black)
+module cpu(dim=[20, 20, 1.25], clr=c_black) {
+    color(clr)
         cube(dim, center=true);
 }
 
