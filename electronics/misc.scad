@@ -34,8 +34,8 @@ module capacitor(dim=[6, 6, 5]) {
     }
 }
 
-module chip(dim=[10, 5, 2]) { // TODO
-    color(c_black)
+module chip(dim=[10, 5, 2], c=c_black) {
+    color(c)
         cube(dim, center=true);
 }
 

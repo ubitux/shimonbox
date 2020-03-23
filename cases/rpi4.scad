@@ -12,22 +12,37 @@
 // ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 // OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-include <../globals.scad>
+use <../boards/rpi4.scad>
+use <../case.scad>
+use <../utils.scad>
 
-$vpr = [50, 0, 90];
 
-module components_demo(pad=30, rowsfirst=false) {
-    n = $children;
-    // provide option to arranage by rows befor columns
-    cols = !rowsfirst ? ceil(sqrt(n)) : ceil(n / ceil(sqrt(n)));
-    rows =  rowsfirst ? ceil(sqrt(n)) : ceil(n / ceil(sqrt(n)));
-    offx = pad * (rows - 1) / 2;
-    offy = pad * (cols - 1) / 2;
-    for (i = [0:n-1]) {
-        x = floor(i / cols);
-        y = i % cols;
-        translate([x*pad - offx, y*pad - offy])
-            rotate(360 * $t)
-                children(i);
-    }
-}
+/*
+include <../core.scad>
+include <../vitamins/blowers.scad>
+if($preview)
+    blower(RB5015);
+*/
+
+
+board_dim = map_get(raspberry_pi_4_info(), "board_dim");
+
+vents = [
+    [
+        "bottom", default_bottom_vents(board_dim),
+    ],[
+        "top", [
+            ["dim", [board_dim[0] * .3, board_dim[1] * .7]],
+            ["pos", [-18, -4.5]],
+        ]
+    ]
+];
+
+cfg = [
+    ["min_z", 3],
+    ["max_z", 9],
+    ["vents", vents],
+];
+
+mode = "demo";
+case("rpi4", cfg, mode);
