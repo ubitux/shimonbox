@@ -59,7 +59,7 @@ module _vents(vents, w=2.1) {
         start      = -length/2 + off + w/2;
         translate(pos) {
             intersection() {
-                circle(d=max(dim), center=true);
+                circle(d=max(dim));
                 for (i = [0:n_vents-1])
                     translate([0, start + i*w*2])
                         square([dim[0], w], center=true);

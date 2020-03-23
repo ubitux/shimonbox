@@ -94,7 +94,7 @@ module bounding_box(board_dim, comp_info_list, padding, extruded_dim=50) {
             translate(box_tr) {
                 minkowski() {
                     cube(box_dim, center=true);
-                    sphere(d=2*padding, center=true);
+                    sphere(d=2*padding);
                 }
             }
         }
