@@ -67,7 +67,7 @@ module usbx2(dim=[18, 14.5, 16], clr=c_black, has_folding=true) {
                 cube([l, w, 3.5]);
 }
 
-module microusb(dim=[6, 10, 6]) {
+module microusb(dim=[6, 8, 3]) {
     jack_dim = [6, 8, 3];
     l = jack_dim[0];
     w = jack_dim[1];
@@ -78,8 +78,8 @@ module microusb(dim=[6, 10, 6]) {
     p_h = dim[2];
     rotate([0, 0, 180]) translate(jack_dim * -.5) { // XXX
         color(c_metal) {
-            translate([l-1, (w-p_w)/2, (h-p_h)/2])
-                cube([1, p_w, p_h]);
+            translate([l-1,0,0]) rotate([90, 0, 90]) linear_extrude(1)
+                polygon(microusb_polygon_pos);
             rotate([90, 0, 90]) {
                 linear_extrude(height=l-1) {
                     difference() {
@@ -96,6 +96,7 @@ module microusb(dim=[6, 10, 6]) {
     }
 }
 
+
 module miniusb(dim=[7.1, 8, 4]) {
     // TODO: merge with microusb (XXX: HDMI?)
     l = dim[0];
@@ -108,7 +109,8 @@ module miniusb(dim=[7.1, 8, 4]) {
                        [0, h-1.5]];
     translate(dim * -.5) { // XXX
     color(c_metal) {
-        cube([l-depth, w, h]);
+        rotate([90, 0, 90]) linear_extrude(l-depth)
+            polygon(otg_polygon_pos);
         translate([l-depth, 0, 0]) {
             rotate([90, 0, 90]) {
                 linear_extrude(height=depth) {
@@ -127,6 +129,56 @@ module miniusb(dim=[7.1, 8, 4]) {
     }
 }
 
+module usbc_inner_profile(d,sep) {
+  hull() {
+      translate([-sep/2,0]) circle(d=d);
+      translate([ sep/2,0]) circle(d=d);
+  }
+}
+
+// VALCON CSP-USC16-TR on RPi4
+module usbc(dim=[7.35, 8.94, 3.2], th=0.3) {
+    d2 = 2.56; // usb-c spec inner receptacle height
+    l = dim[0];
+    w = dim[1];
+    h = dim[2];
+
+    d = d2 + 2*th; // outer height/diameter
+    zoff = h-d;
+
+    sep = 8.34-d2;
+
+    l_leg1 = 1.4;
+    l_leg2 = 1.1;
+    h_leg = h/2;
+
+    recess_tab = 0.4;
+    l_tab = l-recess_tab;
+    w_tab = 6.69;
+    h_tab = 0.7;
+    l_plug = 2.5;
+  
+    translate([l/2,0,0]) {
+        color(c_black)
+            translate([-l_tab-recess_tab,-w_tab/2,-h_tab/2]) 
+                cube([l_tab,w_tab,h_tab]);
+        union() {
+            color(c_metal) for(i=[0,1]) mirror([0,i,0]) {
+                translate([-l_leg1-2.20,w/2-th,-h_leg]) cube([l_leg1,th,h_leg+zoff]);
+                translate([-l_leg2-6.22,w/2-th,-h_leg]) cube([l_leg2,th,h_leg+zoff]);
+            }
+            translate([0,0,zoff]) rotate([90,0,-90]) {
+                color(c_metal) linear_extrude(height=l) difference() {
+                    offset(th) usbc_inner_profile(d2, sep);
+                    usbc_inner_profile(d2, sep);
+                }
+                color(c_black) translate([0,0,l-l_plug]) linear_extrude(height=l_plug) 
+                    usbc_inner_profile(d2, sep);
+            }
+        }
+    }
+}
+
 function usb_info() = [
     ["category", "usb"],
     ["watch", "horizon"],
@@ -134,10 +186,15 @@ function usb_info() = [
 function usbx2_info()    = usb_info();
 function microusb_info() = usb_info();
 function miniusb_info()  = usb_info();
+function usbc_info()     = usb_info();
 
-components_demo(pad=40) {
+// easier to keep in view with rows first for 5 components
+components_demo(pad=30, rowsfirst=true) {
     usb();
     usbx2();
     microusb();
     miniusb();
+    usbc();
 }
+
+

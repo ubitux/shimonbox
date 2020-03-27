@@ -87,7 +87,7 @@ comp_info = [
     [ethernet_info(),       ethernet_dim,    [ 1, 1,-1], [0,0,2], [-1,-1, 1], [-in2mm(100), in2mm(855), 0]],
     [female_header_info(),  gpio_dim,        [-1, 1,-1], [0,0,0], [-1, 1, 1], [18, -0.5, 0]],
     [female_header_info(),  gpio_dim,        [-1,-1,-1], [0,0,0], [-1,-1, 1], [18,  0.5, 0]],
-    [microhdmi_info(),      microhdmi_dim,   [ 1,-1, 1], [0,0,0], [ 1,-1,-1], [ in2mm(25), in2mm(850),  0]],
+    [microhdmi_info(),      microhdmi_dim,   [ 1, 1,-1], [2,0,0], [ 1,-1,-1], [ in2mm(25), in2mm(850),  0]],
     [microsdcard_info(),    microsdcard_dim, [ 1,-1, 1], [0,0,0], [ 1,-1,-1], [in2mm(110), in2mm(1205)+.5, 0]],
     [microsdslot_info(),    microsdslot_dim, [ 1,-1, 1], [0,0,0], [ 1,-1,-1], [0, in2mm(1205), 0]],
     [miniusb_info(),        miniusb_dim,     [ 1, 1, 1], [0,0,2], [-1,-1,-1], [-in2mm(25), in2mm(1575), 0]],
@@ -108,7 +108,7 @@ module beaglebone_black() {
         ethernet(dim=ethernet_dim);
         female_header_pitch254(dim=gpio_dim, n=23, m=2);
         female_header_pitch254(dim=gpio_dim, n=23, m=2);
-        microhdmi(dim=microhdmi_dim);
+        microhdmi(dim=microhdmi_dim, l_fold=0);
         microsdcard(dim=microsdcard_dim);
         microsdslot(dim=microsdslot_dim);
         miniusb(dim=miniusb_dim);

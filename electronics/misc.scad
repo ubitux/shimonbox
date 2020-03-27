@@ -34,7 +34,7 @@ module capacitor(dim=[6, 6, 5]) {
     }
 }
 
-module chip(dim=[10, 5, 2]) { // TODO
+module chip(dim=[10, 5, 2]) {
     color(c_black)
         cube(dim, center=true);
 }
@@ -140,6 +140,67 @@ module serialcon_rpi(dim=[2.5, 22, 5.5]) {
     }
 }
 
+module duct_profile(dim, th=1.2, oneside=false) {
+  if (oneside) {
+      translate([-dim[0]/2-th,0]) square([th,dim[1]]);
+      translate([-dim[0]/2-th,dim[1]]) square([dim[0]+2*th,th]);
+      translate([dim[0]/2,0]) square([th,dim[1]]);
+  } else {
+      difference() {
+          square(dim+th*[2,2], center=true);
+          square(dim, center=true);
+      }
+  }
+}
+
+module duct(dim_inlet=[20,15, 1.2], dim_outlet=[20,15,3], th=1.2) {
+    $fn=120;
+    // full distance ~14.4
+    inx = dim_inlet[0];
+    iny = dim_inlet[1];
+    inz = dim_inlet[2];
+    inxy = [inx,iny];
+    outx = dim_outlet[0];
+    outy = dim_outlet[1];
+    outz = dim_outlet[2];
+    outxy = [outx,outy];
+    
+    translate([iny/2,0]) {
+        rotate([90,0,90]) linear_extrude(inz) 
+            duct_profile(inxy, th, true);
+        rotate([90,0,0]) rotate_extrude(angle=-90)
+            rotate(90) duct_profile(inxy, th, true);
+    }
+    // reducer
+    rotate(90) difference() {
+        hull() {
+            cube([inx+2*th,iny+2*th,0.001], center=true);
+            translate([0,0,-outz]) cube([outx+2*th,outy+2*th,0.001], center=true);
+        }
+        hull() {
+            translate([0,0,0.01]) cube([inx,iny,0.001], center=true);
+            translate([0,0,-outz-0.01]) cube([outx,outy,0.001], center=true);
+        }
+    }
+    // bump to stop from falling through case top
+    group() {
+      d = th;
+      $fn = 32;
+      translate([-iny/2-th,0,d/2]) rotate([90,0,0]) 
+        linear_extrude(inx+2*th, center=true) {
+            rotate(180/$fn) circle(d=d);
+            translate([0,-d/2]) square([d/3,d]);
+        }
+      for(i=[0,1]) mirror([0,i,0])
+        translate([0,-inx/2-th,d/2]) {
+          rotate([0,90,0]) linear_extrude(iny+2*th, center=true) {
+              rotate(180/$fn) circle(d=d);
+          }
+          translate([-iny/2-th,0]) sphere(d=d);
+        }
+    }
+}
+
 function antenna_info() = [
     ["category", "misc"],
     ["watch", "nowhere"],
@@ -180,6 +241,12 @@ function serialcon_rpi_info() = [
     ["watch", "sky"],
 ];
 
+function duct_info() = [
+    ["category", "misc"],
+    ["watch", "sky"],
+];
+
+
 components_demo(pad=40) {
     antenna();
     capacitor();
@@ -189,4 +256,5 @@ components_demo(pad=40) {
     led();
     serialcon_rpi();
     rt_bbb();
+    duct();
 }
