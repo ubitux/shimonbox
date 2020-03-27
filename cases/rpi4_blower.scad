@@ -31,17 +31,22 @@ cfg = [
     ["vents", vents],
 ];
 
-/*
-translate([0,0,1]) difference() {
+//*
+!difference() {
   case("rpi4_blower", cfg, "bottom");
   dslot = 4;
-  sep = 1.2;
-  translate([0,0,13]) 
-  rotate([0,-90]) rotate(90) linear_extrude(100) for(i=[-4:4]) 
-    hull() {
-      translate([(dslot+sep)*i,-4]) circle(d=dslot);
-      translate([(dslot+sep)*i,4]) circle(d=dslot);
+  sep = 2;
+  translate([-43,0,13])
+  rotate([0,-90]) rotate(-90) linear_extrude(100) {
+    for(i=[-1:1]) hull() {
+      translate([(dslot+sep)*i,-4]) circle(d=dslot, $fn=40);
+      translate([(dslot+sep)*i,4]) circle(d=dslot, $fn=40);
     }
+    for(i=[-4,-3,-2,2,3,4]) hull() {
+      translate([(dslot+sep)*i,-9]) circle(d=dslot, $fn=40);
+      translate([(dslot+sep)*i,4]) circle(d=dslot, $fn=40);
+    }
+  }
 }
 //*/
 

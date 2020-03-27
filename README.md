@@ -36,6 +36,7 @@ Corresponding cases
 | [Orange Pi Zero](cases/orangepi_zero.scad)   | ![Orange Pi Zero](cases/gif/orangepi_zero.gif)   | [VERIFIED](pics/orangepi_zero.jpg):<br />![Orange Pi Zero](pics/small/orangepi_zero.jpg) |
 | [Raspberry Pi 3](cases/rpi3.scad)            | ![Raspberry Pi 3](cases/gif/rpi3.gif)            | [VERIFIED](pics/rpi3.jpg):<br />![Raspberry Pi 3](pics/small/rpi3.jpg)                   |
 | [Raspberry Pi 4](cases/rpi4.scad)            | ![Raspberry Pi 4](cases/gif/rpi4.gif)            | [VERIFIED](pics/rpi4.jpg):<br />![Raspberry Pi 4](pics/small/rpi4.jpg)                   |
+| [Raspberry Pi 4](cases/rpi4_blower.scad)(blower fan case) | ![Raspberry Pi 4](cases/gif/rpi4_blower.gif) | [VERIFIED](pics/rpi4_blower.jpg):<br />![Raspberry Pi 4](pics/small/rpi4_blower.jpg)                   |
 
 
 Usage
