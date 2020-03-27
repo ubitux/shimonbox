@@ -82,6 +82,8 @@ module bounding_box(board_dim, comp_info_list, padding, extruded_dim=50) {
         dim  = comp_info[1];
         watch    = map_get(info, "watch");
         category = map_get(info, "category");
+        // allow components to override default padding in special cases
+        padding = len(comp_info)==7 ? comp_info[6] : padding;
 
         /* extrude mask and its inverse */
         ex_mask     = [watch == "horizon" ? 1 : 0, 0, watch == "sky" ? 1 : 0];

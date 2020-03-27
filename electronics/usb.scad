@@ -190,11 +190,11 @@ function usbc_info()     = usb_info();
 
 // easier to keep in view with rows first for 5 components
 components_demo(pad=30, rowsfirst=true) {
-    //usb();
-    //usbx2();
-    //microusb();
+    usb();
+    usbx2();
+    microusb();
     miniusb();
-    //usbc();
+    usbc();
 }
 
 

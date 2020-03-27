@@ -16,6 +16,7 @@ include <../globals.scad>
 
 use <../case.scad>
 use <../utils.scad>
+use <../electronics/cpu.scad>
 use <../electronics/hdmi.scad>
 use <../electronics/header.scad>
 use <../electronics/jack.scad>
@@ -39,6 +40,8 @@ lusb = 17.5;
 wusb = 15;
 husb = 16;
 
+duct_th = 1.2;
+ 
 /* Components bounding box dimensions */
 ethernet_dim    = [21.25,   16,13.75];
 gpio_dim        = [   51,    5,  8.5];
@@ -53,68 +56,100 @@ cpu_dim         = [   15,   15,  2.4]; // draw cpu to assist fan aligmnent
 
 ethusb_dim      = [ lusb, 3.25, husb]; // cleanup box
 usbusb_dim      = [ lusb,    3, husb]; // cleanup box
-
+btm_cutout_dim  = [   10,52.5,husb+1];
+duct_dim        = [15+2*duct_th,20+2*duct_th,26.2];
 
 module raspberry_pi_4_plate_2d() {
     plate_2d(board_dim[0], board_dim[1], 3);
 }
 
-
-// 
-
-
-comp_info = [
+function comp_info(blower=false) = [
     /* info function        box dimensions   comp-corner rotate  board-corner    position  */
-    [ethernet_info(),       ethernet_dim,    [ 1, 0,-1], [0,0,0], [ 1,-1, 1], [   3,45.75,0]],
-    [microhdmi_info(),      microhdmi_dim,   [ 1, 0,-1], [0,0,3], [-1,-1, 1], [  26,-1.65,0]],
-    [microhdmi_info(),      microhdmi_dim,   [ 1, 0,-1], [0,0,3], [-1,-1, 1], [39.5,-1.65,0]],
-    [jack_info(),           jack_dim,        [ 1, 0,-1], [0,0,3], [-1,-1, 1], [  54,   -2,0]],
-    [microsdcard_info(),    microsdcard_dim, [ 1, 0,-1], [2,0,2], [-1, 0,-1], [-2.25,   0,0]],
-    [microsdslot_info(),    microsdslot_dim, [ 1, 0,-1], [2,0,2], [-1, 0,-1], [ 1.75,   0,0]],
-    [usbc_info(),           usbc_dim,        [ 1, 0,-1], [0,0,3], [-1,-1, 1], [11.2, -1.2,0]],
-    [pin_header_info(),     gpio_dim,        [ 0, 0,-1], [0,0,0], [-1, 1, 1], [32.5, -3.5,0]],
-    [serialcon_rpi_info(),  serialcon_dim,   [ 0,-1,-1], [0,0,0], [-1,-1, 1], [ 46.5, 0.5,0]], // camera
-    [serialcon_rpi_info(),  serialcon_dim,   [ 1, 0,-1], [0,0,2], [-1,-1, 1], [    4,  28,0]], // display
-    [usbx2_info(),          usbx2_dim,       [ 1, 0,-1], [0,0,0], [ 1,-1, 1], [  3.2,  9, 0]],
-    [usbx2_info(),          usbx2_dim,       [ 1, 0,-1], [0,0,0], [ 1,-1, 1], [  3.2,  27,0]],
-    [chip_info(),           cpu_dim,         [ 0, 0,-1], [0,0,3], [-1,-1, 1], [29.25,32.5,0]],
-
-    [unknown_info(),        ethusb_dim,      [ 1, 0,-1], [0,0,0], [ 1,-1, 1], [  3.2,  36,0]],
-    [unknown_info(),        usbusb_dim,      [ 1, 0,-1], [0,0,0], [ 1,-1, 1], [  3.2,  18,0]],
+    [microhdmi_info(),      microhdmi_dim,   [ 1, 0,-1], [0,0,3], [-1,-1, 1], [  26,-1.65, 0]],
+    [microhdmi_info(),      microhdmi_dim,   [ 1, 0,-1], [0,0,3], [-1,-1, 1], [39.5,-1.65, 0]],
+    [jack_info(),           jack_dim,        [ 1, 0,-1], [0,0,3], [-1,-1, 1], [53.5,   -2, 0]],
+    [microsdcard_info(),    microsdcard_dim, [ 1, 0,-1], [2,0,2], [-1, 0,-1], [-2.25,   0, 0]],
+    [microsdslot_info(),    microsdslot_dim, [ 1, 0,-1], [2,0,2], [-1, 0,-1], [ 1.75,   0, 0]],
+    [usbc_info(),           usbc_dim,        [ 1, 0,-1], [0,0,3], [-1,-1, 1], [11.2, -1.2, 0]],
+    [pin_header_info(),     gpio_dim,        [ 0, 0,-1], [0,0,0], [-1, 1, 1], [32.5, -3.5, 0]],
+    [serialcon_rpi_info(),  serialcon_dim,   [ 0,-1,-1], [0,0,0], [-1,-1, 1], [ 46.5,   1, 0]], // camera
+    [serialcon_rpi_info(),  serialcon_dim,   [ 0, 0,-1], [0,0,2], [-1,-1, 1], [    4,  28, 0]], // display
+    [cpu_info(),           cpu_dim,          [ 0, 0,-1], [0,0,3], [-1,-1, 1], [29.25,32.5, 0]],
+  if(blower) each [
+    [ethernet_info(),       ethernet_dim,    [ 1, 0,-1], [0,0,0], [ 1,-1, 1], [   3,45.75, 0], 0],
+    [usbx2_info(),          usbx2_dim,       [ 1, 0,-1], [0,0,0], [ 1,-1, 1], [  3.2,  9,  0], 0],
+    [usbx2_info(),          usbx2_dim,       [ 1, 0,-1], [0,0,0], [ 1,-1, 1], [  3.2,  27, 0], 0],
+    // Case top needs to cover usb/eth, for blower to mount to.
+    // This component ensures bottom has no odd overhangs on top after extending it's height.
+    [unknown_info(),        btm_cutout_dim,  [ 1,-1,-1], [0,0,0], [ 1,-1, 1], [ 3.2, 1.56,-1], 0],
+    // for case top cutout
+    [duct_info(),           duct_dim,        [ 0, 0, 0], [0,0,0], [-1,-1, 1], [29.25,32.5,17.2], 0.25]
+  
+  ] else each [
+    [ethernet_info(),       ethernet_dim,    [ 1, 0,-1], [0,0,0], [ 1,-1, 1], [   3,45.75, 0]],
+    [usbx2_info(),          usbx2_dim,       [ 1, 0,-1], [0,0,0], [ 1,-1, 1], [  3.2,  9,  0]],
+    [usbx2_info(),          usbx2_dim,       [ 1, 0,-1], [0,0,0], [ 1,-1, 1], [  3.2,  27, 0]],
+    [unknown_info(),        ethusb_dim,      [ 1, 0,-1], [0,0,0], [ 1,-1, 1], [  3.2,  36, 0]],
+    [unknown_info(),        usbusb_dim,      [ 1, 0,-1], [0,0,0], [ 1,-1, 1], [  3.2,  18, 0]]
+  ]
 ];
 
-module raspberry_pi_4() {
+module raspberry_pi_4(blower=false) {
     extrude_plate(board_dim[2], holes_pos, hole_d, ring_off, clr=c_green_pcb, clr_ring=c_yellow)
         raspberry_pi_4_plate_2d();
 
-    set_components(board_dim, comp_info) {
-        ethernet(dim=ethernet_dim, swap_led=true);
-        microhdmi(dim=microhdmi_dim);
-        microhdmi(dim=microhdmi_dim);
-        jack(dim=jack_dim);
-        microsdcard(dim=microsdcard_dim);
-        microsdslot(dim=microsdslot_dim);
-        usbc(dim=usbc_dim);
-        pin_header_pitch254(dim=gpio_dim, n=20, m=2);
-        serialcon_rpi(dim=serialcon_dim);
-        serialcon_rpi(dim=serialcon_dim);
-        usbx2(dim=usbx2_dim);
-        usbx2(dim=usbx2_dim, clr=c_usb_blue);
-        chip(dim=cpu_dim, c=c_metal);
-        %cube(ethusb_dim, center=true);
-        %cube(usbusb_dim, center=true);
+    // Must use outer "if" statement so children of conditional are each treated as separate child.
+    if (blower) {
+        set_components(board_dim, comp_info(blower)) {
+            microhdmi(dim=microhdmi_dim);
+            microhdmi(dim=microhdmi_dim);
+            jack(dim=jack_dim);
+            microsdcard(dim=microsdcard_dim);
+            microsdslot(dim=microsdslot_dim);
+            usbc(dim=usbc_dim);
+            pin_header_pitch254(dim=gpio_dim, n=20, m=2);
+            serialcon_rpi(dim=serialcon_dim);
+            serialcon_rpi(dim=serialcon_dim);
+            cpu(dim=cpu_dim, clr=c_metal);
+
+            ethernet(dim=ethernet_dim, swap_led=true);
+            usbx2(dim=usbx2_dim);
+            usbx2(dim=usbx2_dim, clr=c_usb_blue);
+            %cube(btm_cutout_dim, center=true);
+            %duct();
+        }
+    } else {
+        set_components(board_dim, comp_info(blower)) {
+            microhdmi(dim=microhdmi_dim);
+            microhdmi(dim=microhdmi_dim);
+            jack(dim=jack_dim);
+            microsdcard(dim=microsdcard_dim);
+            microsdslot(dim=microsdslot_dim);
+            usbc(dim=usbc_dim);
+            pin_header_pitch254(dim=gpio_dim, n=20, m=2);
+            serialcon_rpi(dim=serialcon_dim);
+            serialcon_rpi(dim=serialcon_dim);
+            cpu(dim=cpu_dim, clr=c_metal);
+
+            ethernet(dim=ethernet_dim, swap_led=true);
+            usbx2(dim=usbx2_dim);
+            usbx2(dim=usbx2_dim, clr=c_usb_blue);
+            %cube(ethusb_dim, center=true);
+            %cube(usbusb_dim, center=true);
+        }
     }
 }
 
-function raspberry_pi_4_info() = [
+function raspberry_pi_4_info(blower=false) = [
     ["board_dim",  board_dim],
-    ["components", comp_info],
+    ["components", comp_info(blower)],
     ["holes_d",    hole_d],
     ["holes_pos",  holes_pos],
 ];
 
 
+blower = false;
 demo_board(board_dim) {
-    raspberry_pi_4();
-    *#bounding_box(board_dim, comp_info);
+    raspberry_pi_4(blower);
+    *#bounding_box(board_dim, comp_info(blower));
 }

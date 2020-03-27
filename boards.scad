@@ -33,6 +33,7 @@ boards = [
     ["orangepi_zero",   orangepi_zero_info()],
     ["rpi3",            raspberry_pi_3_info()],
     ["rpi4",            raspberry_pi_4_info()],
+    ["rpi4_blower",     raspberry_pi_4_info(blower=true)],
     ["wemos_esp8266",   wemos_esp8266_info()],
 ];
 
@@ -45,6 +46,7 @@ module boards_get_plate_2d(id) {
         orangepi_zero_plate_2d();
         raspberry_pi_3_plate_2d();
         raspberry_pi_4_plate_2d();
+        raspberry_pi_4_plate_2d(); // blower case
         wemos_esp8266_plate_2d();
     }
 }
@@ -58,6 +60,7 @@ module boards_get_board(id) {
         orangepi_zero();
         raspberry_pi_3();
         raspberry_pi_4();
+        raspberry_pi_4(blower=true);
         wemos_esp8266();
     }
 }
