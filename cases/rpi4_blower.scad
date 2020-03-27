@@ -31,7 +31,10 @@ cfg = [
     ["vents", vents],
 ];
 
-//*
+
+// Uncomment to manually export case bottom
+// with extra vent holes out of the side (recommended)
+/*
 !difference() {
   case("rpi4_blower", cfg, "bottom");
   dslot = 4;
