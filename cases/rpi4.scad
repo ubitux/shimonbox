@@ -16,15 +16,6 @@ use <../boards/rpi4.scad>
 use <../case.scad>
 use <../utils.scad>
 
-
-/*
-include <../core.scad>
-include <../vitamins/blowers.scad>
-if($preview)
-    blower(RB5015);
-*/
-
-
 board_dim = map_get(raspberry_pi_4_info(), "board_dim");
 
 vents = [
